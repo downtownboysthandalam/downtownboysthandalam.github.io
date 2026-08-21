@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 580" width="100%" height="100%">
+  <defs>
+    <!-- Sharp Outer Gold Border -->
+    <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2C94C"/>
+      <stop offset="100%" stop-color="#F2994A"/>
+    </linearGradient>
+
+    <!-- Header Blue Arc -->
+    <linearGradient id="headerBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0066FF"/>
+      <stop offset="100%" stop-color="#003399"/>
+    </linearGradient>
+
+    <!-- DB Letter Inner Stripe -->
+    <linearGradient id="yellowStripe" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F2C94C"/>
+      <stop offset="100%" stop-color="#E2B13C"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Shield Shell -->
+  <path d="M 250 15 L 430 65 V 270 C 430 380 250 480 250 480 C 250 480 70 380 70 270 V 65 Z" fill="url(#goldBorder)"/>
+  
+  <!-- Outer Dark Navy Border Base -->
+  <path d="M 250 27 L 418 73 V 265 C 418 368 250 462 250 462 C 250 462 82 368 82 265 V 73 Z" fill="#0B132B"/>
+
+  <!-- Left Light Blue Shield Half -->
+  <path d="M 250 27 L 82 73 V 265 C 82 368 250 462 250 462 Z" fill="#1C3D5A"/>
+
+  <!-- Top Blue Header Arc -->
+  <path d="M 82 73 C 180 35 320 35 418 73 L 418 145 C 320 110 180 110 82 145 Z" fill="url(#headerBlue)" stroke="url(#goldBorder)" stroke-width="4"/>
+
+  <!-- Top Header Text: DOWNTOWN BOYS -->
+  <path id="headerPath" d="M 95 130 C 190 92 310 92 405 130" fill="none"/>
+  <text font-family="'Impact', 'Arial Black', sans-serif" font-size="34" font-weight="900" fill="#FFFFFF" letter-spacing="1">
+    <textPath href="#headerPath" startOffset="50%" text-anchor="middle">DOWNTOWN BOYS</textPath>
+  </text>
+
+  <!-- Left Side: "DB" Monogram -->
+  <g transform="translate(95, 160)">
+    <!-- Main DB White Shape -->
+    <text x="0" y="115" font-family="'Impact', 'Arial Black', sans-serif" font-size="135" font-weight="900" fill="#FFFFFF" stroke="#0B132B" stroke-width="6">DB</text>
+    <!-- Middle Yellow Accent Line -->
+    <rect x="5" y="55" width="160" height="12" fill="url(#yellowStripe)"/>
+  </g>
+
+  <!-- Right Side: Detailed Roaring Lion -->
+  <g transform="translate(230, 140)">
+    <!-- Lion Mane Back/Base -->
+    <path d="M 80 10 Q 150 -10 180 40 Q 220 80 200 130 Q 170 170 110 180 Q 140 140 120 110 Q 150 90 120 60 Q 110 40 80 10 Z" fill="#E2B13C"/>
+    
+    <!-- White Mane Highlights -->
+    <path d="M 120 20 C 160 30 180 70 160 110 C 140 90 130 70 100 60 Z" fill="#FFFFFF" opacity="0.9"/>
+    
+    <!-- Lion Face Outline -->
+    <path d="M 90 60 L 150 75 L 175 90 L 140 105 L 165 115 L 130 135 L 100 130 L 80 105 Z" fill="#0B132B"/>
+    <path d="M 95 65 L 145 78 L 168 90 L 138 102 L 158 110 L 128 128 L 102 124 L 85 102 Z" fill="#E2B13C"/>
+    
+    <!-- Open Mouth Throat -->
+    <polygon points="135,95 160,100 135,112" fill="#0B132B"/>
+    <!-- Teeth -->
+    <polygon points="138,95 144,101 148,96" fill="#FFFFFF"/>
+    <polygon points="138,112 144,106 148,111" fill="#FFFFFF"/>
+    
+    <!-- Lion Eye -->
+    <polygon points="115,72 130,76 120,82" fill="#0B132B"/>
+  </g>
+
+  <!-- Bottom Banner: THANDALAM -->
+  <g transform="translate(0, 310)">
+    <!-- Banner Ribbons Wings -->
+    <path d="M 35 65 L 85 35 V 85 L 35 115 Z" fill="#A06A0B"/>
+    <path d="M 465 65 L 415 35 V 85 L 465 115 Z" fill="#A06A0B"/>
+    
+    <!-- Main Banner Body -->
+    <path d="M 60 40 L 250 12 L 440 40 L 415 95 L 250 68 L 85 95 Z" fill="url(#goldBorder)" stroke="#0B132B" stroke-width="4"/>
+    
+    <!-- Banner Text -->
+    <text x="250" y="62" font-family="'Impact', 'Arial Black', sans-serif" font-size="38" font-weight="900" fill="#0B132B" text-anchor="middle" letter-spacing="4">
+      THANDALAM
+    </text>
+  </g>
+</svg>
