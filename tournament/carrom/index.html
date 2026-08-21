@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrom Registration - Downtown Boys Thandalam</title>
+  <style>
+    body { font-family: "Georgia", "Times New Roman", serif; background-color: #f7f4ed; color: #2b2b2b; padding: 20px 10px; margin: 0; }
+    .container { max-width: 520px; margin: 0 auto; background-color: #ffffff; padding: 30px 25px; border: 2px solid #8c6d3b; border-radius: 4px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); }
+    .header { text-align: center; border-bottom: 2px double #8c6d3b; padding-bottom: 15px; margin-bottom: 25px; }
+    h2 { margin: 0; color: #4a3728; font-size: 24px; letter-spacing: 1px; text-transform: uppercase; }
+    .subtitle { font-size: 13px; font-style: italic; color: #666; margin-top: 5px; }
+    label { display: block; font-weight: bold; margin-top: 15px; font-size: 13px; color: #4a3728; text-transform: uppercase; letter-spacing: 0.5px; }
+    input, select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #b8a99a; border-radius: 2px; background-color: #faf9f6; font-family: "Georgia", serif; font-size: 14px; color: #2b2b2b; }
+    input:focus, select:focus { outline: none; border-color: #8c6d3b; background-color: #ffffff; }
+    .section-title { font-weight: bold; font-size: 15px; color: #8c6d3b; border-bottom: 1px solid #dcd1c4; margin-top: 25px; padding-bottom: 4px; text-transform: uppercase; }
+    .terms { background: #faf9f6; padding: 12px; border: 1px solid #dcd1c4; height: 100px; overflow-y: scroll; font-size: 12px; line-height: 1.6; margin-top: 8px; color: #444; }
+    .checkbox-container { margin-top: 15px; font-size: 13px; display: flex; align-items: center; }
+    .checkbox-container input { width: auto; margin-top: 0; margin-right: 8px; }
+    button { width: 100%; padding: 12px; background-color: #4a3728; color: #ffffff; border: 1px solid #332419; border-radius: 2px; font-family: "Georgia", serif; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; cursor: pointer; transition: background-color 0.2s; }
+    button:hover { background-color: #6b503b; }
+    .back-link { display: block; margin-top: 20px; text-align: center; font-size: 13px; color: #8c6d3b; text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h2>Carrom Tournament</h2>
+      <div class="subtitle">Official Registration Form</div>
+    </div>
+
+    <form id="regForm" onsubmit="sendToWhatsApp(event)">
+      <label>Category *</label>
+      <select id="category" required>
+        <option value="">Select Category</option>
+        <option value="Above 18">Above 18</option>
+        <option value="Below 18">Below 18</option>
+      </select>
+
+      <label>Team Name *</label>
+      <input type="text" id="team" required>
+
+      <div class="section-title">Captain Details</div>
+
+      <label>Captain Name *</label>
+      <input type="text" id="captain" required>
+
+      <label>Captain ID Number *</label>
+      <input type="text" id="captainAadhaar" maxlength="12" placeholder="ID / Document Number" required>
+
+      <label>Captain Date of Birth *</label>
+      <input type="date" id="captainDob" required>
+
+      <label>Captain Mobile Number *</label>
+      <input type="tel" id="captainMobile" required>
+
+      <div class="section-title">Player 2 Details</div>
+
+      <label>Player 2 Full Name *</label>
+      <input type="text" id="player2" required>
+
+      <label>Player 2 ID Number *</label>
+      <input type="text" id="player2Aadhaar" maxlength="12" placeholder="ID / Document Number" required>
+
+      <label>Player 2 Date of Birth *</label>
+      <input type="date" id="player2Dob" required>
+
+      <label>Player 2 Mobile Number *</label>
+      <input type="tel" id="player2Mobile" required>
+
+      <div class="section-title">Rules & Regulations</div>
+      <div class="terms">
+        • Participation restricted to Thandalam residents.<br>
+        • Organizer decisions are final.<br>
+        • Direct hits allowed; Thumbing & direct arrow hitting prohibited.<br>
+        • Striker pocket/out of board is a foul.
+      </div>
+      
+      <div class="checkbox-container">
+        <input type="checkbox" id="termsAgree" required>
+        <label for="termsAgree" style="margin-top:0; font-weight:normal; text-transform:none;">I agree to tournament rules.</label>
+      </div>
+
+      <button type="submit">Submit Registration via WhatsApp</button>
+    </form>
+
+    <a href="../" class="back-link">← Back to Tournaments</a>
+  </div>
+
+  <script>
+    function sendToWhatsApp(e) {
+      e.preventDefault();
+      
+      const organizerPhone = "918939645446";
+
+      const msg = "Carrom Board Tournament Registration\n\n" +
+        "Category : " + document.getElementById('category').value + "\n" +
+        "Team Name : " + document.getElementById('team').value + "\n" +
+        "Captain's Name : " + document.getElementById('captain').value + "\n" +
+        "Captain ID Number : " + document.getElementById('captainAadhaar').value + "\n" +
+        "Captain's Date of Birth : " + document.getElementById('captainDob').value + "\n" +
+        "Captain Mobile Number : " + document.getElementById('captainMobile').value + "\n" +
+        "Player 2 Full Name : " + document.getElementById('player2').value + "\n" +
+        "Player 2 ID Number : " + document.getElementById('player2Aadhaar').value + "\n" +
+        "Player 2 Date of Birth : " + document.getElementById('player2Dob').value + "\n" +
+        "Player 2 Mobile Number : " + document.getElementById('player2Mobile').value + "\n" +
+        "Agree to terms and conditions : I confirm that the information provided is accurate and agree to the tournament rules.";
+
+      const encodedMsg = encodeURIComponent(msg);
+      window.location.href = "https://wa.me/" + organizerPhone + "?text=" + encodedMsg;
+    }
+  </script>
+
+</body>
+</html>
