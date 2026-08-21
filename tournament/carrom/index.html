@@ -13,6 +13,12 @@
     label { display: block; font-weight: bold; margin-top: 15px; font-size: 13px; color: #4a3728; text-transform: uppercase; letter-spacing: 0.5px; }
     input, select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #b8a99a; border-radius: 2px; background-color: #faf9f6; font-family: "Georgia", serif; font-size: 14px; color: #2b2b2b; }
     input:focus, select:focus { outline: none; border-color: #8c6d3b; background-color: #ffffff; }
+    
+    /* Prepopulated Phone Input Container */
+    .phone-container { display: flex; align-items: center; margin-top: 5px; }
+    .phone-prefix { padding: 10px; background-color: #eee4d5; border: 1px solid #b8a99a; border-right: none; border-radius: 2px 0 0 2px; font-weight: bold; font-size: 14px; color: #4a3728; }
+    .phone-container input { border-radius: 0 2px 2px 0; margin-top: 0; }
+
     .section-title { font-weight: bold; font-size: 15px; color: #8c6d3b; border-bottom: 1px solid #dcd1c4; margin-top: 25px; padding-bottom: 4px; text-transform: uppercase; }
     .terms { background: #faf9f6; padding: 12px; border: 1px solid #dcd1c4; height: 100px; overflow-y: scroll; font-size: 12px; line-height: 1.6; margin-top: 8px; color: #444; }
     .checkbox-container { margin-top: 15px; font-size: 13px; display: flex; align-items: center; }
@@ -46,28 +52,34 @@
       <label>Captain Name *</label>
       <input type="text" id="captain" required>
 
-      <label>Captain ID Number *</label>
-      <input type="text" id="captainAadhaar" maxlength="12" placeholder="ID / Document Number" required>
+      <label>Captain's Aadhaar Number *</label>
+      <input type="text" id="captainAadhaar" maxlength="12" pattern="\d{12}" title="Please enter a 12-digit Aadhaar number" placeholder="12-digit Aadhaar Number" required>
 
       <label>Captain Date of Birth *</label>
       <input type="date" id="captainDob" required>
 
       <label>Captain Mobile Number *</label>
-      <input type="tel" id="captainMobile" required>
+      <div class="phone-container">
+        <span class="phone-prefix">+91</span>
+        <input type="tel" id="captainMobile" maxlength="10" pattern="\d{10}" title="Please enter a 10-digit mobile number" placeholder="10-digit Mobile Number" required>
+      </div>
 
       <div class="section-title">Player 2 Details</div>
 
       <label>Player 2 Full Name *</label>
       <input type="text" id="player2" required>
 
-      <label>Player 2 ID Number *</label>
-      <input type="text" id="player2Aadhaar" maxlength="12" placeholder="ID / Document Number" required>
+      <label>Player 2 Aadhaar Number *</label>
+      <input type="text" id="player2Aadhaar" maxlength="12" pattern="\d{12}" title="Please enter a 12-digit Aadhaar number" placeholder="12-digit Aadhaar Number" required>
 
       <label>Player 2 Date of Birth *</label>
       <input type="date" id="player2Dob" required>
 
       <label>Player 2 Mobile Number *</label>
-      <input type="tel" id="player2Mobile" required>
+      <div class="phone-container">
+        <span class="phone-prefix">+91</span>
+        <input type="tel" id="player2Mobile" maxlength="10" pattern="\d{10}" title="Please enter a 10-digit mobile number" placeholder="10-digit Mobile Number" required>
+      </div>
 
       <div class="section-title">Rules & Regulations</div>
       <div class="terms">
@@ -89,8 +101,24 @@
   </div>
 
   <script>
+    const today = new Date().toISOString().split('T')[0];
+    const captainDobInput = document.getElementById('captainDob');
+    const player2DobInput = document.getElementById('player2Dob');
+
+    captainDobInput.setAttribute('max', today);
+    player2DobInput.setAttribute('max', today);
+
     function sendToWhatsApp(e) {
       e.preventDefault();
+
+      if (captainDobInput.value > today || player2DobInput.value > today) {
+        alert("Date of Birth cannot be in the future.");
+        return;
+      }
+
+      // Extracts only the 10-digit numbers typed by the user
+      const captainPhone = document.getElementById('captainMobile').value.trim();
+      const player2Phone = document.getElementById('player2Mobile').value.trim();
       
       const organizerPhone = "918939645446";
 
@@ -98,13 +126,13 @@
         "Category : " + document.getElementById('category').value + "\n" +
         "Team Name : " + document.getElementById('team').value + "\n" +
         "Captain's Name : " + document.getElementById('captain').value + "\n" +
-        "Captain ID Number : " + document.getElementById('captainAadhaar').value + "\n" +
+        "Captain Aadhaar Number : " + document.getElementById('captainAadhaar').value + "\n" +
         "Captain's Date of Birth : " + document.getElementById('captainDob').value + "\n" +
-        "Captain Mobile Number : " + document.getElementById('captainMobile').value + "\n" +
+        "Captain Mobile Number : " + captainPhone + "\n" +
         "Player 2 Full Name : " + document.getElementById('player2').value + "\n" +
-        "Player 2 ID Number : " + document.getElementById('player2Aadhaar').value + "\n" +
+        "Player 2 Aadhaar Number : " + document.getElementById('player2Aadhaar').value + "\n" +
         "Player 2 Date of Birth : " + document.getElementById('player2Dob').value + "\n" +
-        "Player 2 Mobile Number : " + document.getElementById('player2Mobile').value + "\n" +
+        "Player 2 Mobile Number : " + player2Phone + "\n" +
         "Agree to terms and conditions : I confirm that the information provided is accurate and agree to the tournament rules.";
 
       const encodedMsg = encodeURIComponent(msg);
