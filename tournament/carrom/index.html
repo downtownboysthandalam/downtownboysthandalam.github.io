@@ -13,7 +13,6 @@
     h2 { margin: 0; color: #4a3728; font-size: 18px; letter-spacing: 0.5px; text-transform: uppercase; line-height: 1.3; }
     .subtitle { font-size: 12px; font-style: italic; color: #666; margin-top: 4px; }
     
-    /* Top Register Button & Disabled State */
     .top-register-btn { background-color: #27ae60; color: #ffffff; padding: 8px 12px; border-radius: 3px; font-family: "Georgia", serif; font-size: 11px; font-weight: bold; text-transform: uppercase; text-decoration: none; display: inline-block; white-space: nowrap; transition: background-color 0.2s; border: none; }
     .top-register-btn:hover { background-color: #219653; }
     
@@ -32,6 +31,7 @@
     label { display: block; font-weight: bold; margin-top: 15px; font-size: 12px; color: #4a3728; text-transform: uppercase; letter-spacing: 0.5px; }
     input, select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #b8a99a; border-radius: 2px; background-color: #faf9f6; font-family: "Georgia", serif; font-size: 14px; color: #2b2b2b; }
     input:focus, select:focus { outline: none; border-color: #8c6d3b; background-color: #ffffff; }
+    input:disabled, select:disabled { background-color: #e9ecef; cursor: not-allowed; border-color: #d1d5db; color: #6b7280; }
     
     .phone-container { display: flex; align-items: center; margin-top: 5px; }
     .phone-prefix { padding: 10px; background-color: #eee4d5; border: 1px solid #b8a99a; border-right: none; border-radius: 2px 0 0 2px; font-weight: bold; font-size: 14px; color: #4a3728; }
@@ -43,6 +43,7 @@
     .btn-wrapper { text-align: center; margin-top: 25px; }
     .submit-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 10px 20px; background-color: #25d366; color: #ffffff; border: none; border-radius: 25px; font-family: "Georgia", serif; font-size: 14px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; box-shadow: 0 2px 6px rgba(0,0,0,0.15); transition: all 0.2s ease; }
     .submit-btn:hover { background-color: #20ba5a; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
+    .submit-btn:disabled { background-color: #7f8c8d !important; cursor: not-allowed !important; opacity: 0.8; box-shadow: none !important; transform: none !important; }
     .wa-icon { width: 18px; height: 18px; fill: currentColor; }
 
     .back-link { display: block; margin-top: 20px; text-align: center; font-size: 13px; color: #8c6d3b; text-decoration: none; }
@@ -58,7 +59,8 @@
         <div class="subtitle">Official Tournament Portal</div>
       </div>
       <!-- <a href="#registration-form" class="top-register-btn">Register Team 📝</a> -->
-      <a href="javascript:void(0)" class="top-register-btn disabled">Stay Tuned ⏳</a>
+      <!-- Top Register Button (Disabled) -->
+      <a href="javascript:void(0)" class="top-register-btn disabled">Registration Closed — Stay Tuned ⏳</a>
     </div>
 
     <div class="info-card">
@@ -163,11 +165,11 @@
       </div>
 
       <div class="btn-wrapper">
-        <button type="submit" class="submit-btn">
+        <button type="submit" id="submitBtn" class="submit-btn">
           <svg class="wa-icon" viewBox="0 0 24 24">
             <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
           </svg>
-          Submit via WhatsApp
+          <span id="btnText">Submit via WhatsApp</span>
         </button>
       </div>
     </form>
@@ -183,8 +185,36 @@
     captainDobInput.setAttribute('max', today);
     player2DobInput.setAttribute('max', today);
 
+    // Automatically check registration status on page load
+    document.addEventListener("DOMContentLoaded", function () {
+      const topRegisterBtn = document.querySelector('.top-register-btn');
+      
+      if (topRegisterBtn && topRegisterBtn.classList.contains('disabled')) {
+        const regForm = document.getElementById('regForm');
+        
+        // Disable all input, select, and button elements inside the form
+        const elements = regForm.querySelectorAll('input, select, button');
+        elements.forEach(element => {
+          element.disabled = true;
+        });
+
+        // Update the submit button text
+        const btnText = document.getElementById('btnText');
+        if (btnText) {
+          btnText.innerText = 'Registration Closed';
+        }
+      }
+    });
+
     function sendToWhatsApp(e) {
       e.preventDefault();
+
+      // Block execution if registration is closed
+      const topRegisterBtn = document.querySelector('.top-register-btn');
+      if (topRegisterBtn && topRegisterBtn.classList.contains('disabled')) {
+        alert("Registration is currently closed.");
+        return;
+      }
 
       const team = document.getElementById('team').value.trim();
       const captain = document.getElementById('captain').value.trim();
