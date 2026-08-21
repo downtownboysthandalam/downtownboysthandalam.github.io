@@ -3,74 +3,152 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carrom Registration - Downtown Boys Thandalam</title>
+  <title>THANDALAM PREMIER CARROM LEAGUE - 2026</title>
   <style>
     body { font-family: "Georgia", "Times New Roman", serif; background-color: #f7f4ed; color: #2b2b2b; padding: 20px 10px; margin: 0; }
-    .container { max-width: 520px; margin: 0 auto; background-color: #ffffff; padding: 30px 25px; border: 2px solid #8c6d3b; border-radius: 4px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); }
-    .header { text-align: center; border-bottom: 2px double #8c6d3b; padding-bottom: 15px; margin-bottom: 25px; }
-    h2 { margin: 0; color: #4a3728; font-size: 24px; letter-spacing: 1px; text-transform: uppercase; }
+    .container { max-width: 650px; margin: 0 auto; background-color: #ffffff; padding: 30px 25px; border: 2px solid #8c6d3b; border-radius: 4px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); position: relative; }
+    
+    /* Top Right Header & Register Button */
+    .header-bar { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px double #8c6d3b; padding-bottom: 15px; margin-bottom: 25px; }
+    .header-text { max-width: 70%; }
+    h2 { margin: 0; color: #4a3728; font-size: 20px; letter-spacing: 0.5px; text-transform: uppercase; }
     .subtitle { font-size: 13px; font-style: italic; color: #666; margin-top: 5px; }
+    
+    .top-register-btn { background-color: #27ae60; color: #ffffff; padding: 10px 16px; border: none; border-radius: 2px; font-family: "Georgia", serif; font-size: 13px; font-weight: bold; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background-color 0.2s; white-space: nowrap; }
+    .top-register-btn:hover { background-color: #219653; }
+
+    /* Tournament Info Box */
+    .info-card { background-color: #faf9f6; border: 1px solid #dcd1c4; padding: 15px; margin-bottom: 25px; border-radius: 2px; }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 10px; }
+    .info-item { font-size: 13px; color: #333; }
+    .info-item strong { color: #8c6d3b; text-transform: uppercase; display: block; font-size: 11px; margin-bottom: 2px; }
+
+    /* Full Non-Scrollable Rules Section */
+    .section-title { font-weight: bold; font-size: 15px; color: #8c6d3b; border-bottom: 1px solid #dcd1c4; margin-top: 25px; padding-bottom: 4px; text-transform: uppercase; }
+    .rules-container { background: #faf9f6; padding: 15px; border: 1px solid #dcd1c4; font-size: 13px; line-height: 1.6; margin-top: 10px; color: #333; }
+    .rules-container ul { margin: 5px 0 0 0; padding-left: 20px; }
+    .rules-container li { margin-bottom: 8px; }
+
+    /* Form Styles */
     label { display: block; font-weight: bold; margin-top: 15px; font-size: 13px; color: #4a3728; text-transform: uppercase; letter-spacing: 0.5px; }
     input, select { width: 100%; padding: 10px; margin-top: 5px; box-sizing: border-box; border: 1px solid #b8a99a; border-radius: 2px; background-color: #faf9f6; font-family: "Georgia", serif; font-size: 14px; color: #2b2b2b; }
     input:focus, select:focus { outline: none; border-color: #8c6d3b; background-color: #ffffff; }
     
-    /* Prepopulated Phone Input Container */
     .phone-container { display: flex; align-items: center; margin-top: 5px; }
     .phone-prefix { padding: 10px; background-color: #eee4d5; border: 1px solid #b8a99a; border-right: none; border-radius: 2px 0 0 2px; font-weight: bold; font-size: 14px; color: #4a3728; }
     .phone-container input { border-radius: 0 2px 2px 0; margin-top: 0; }
 
-    .section-title { font-weight: bold; font-size: 15px; color: #8c6d3b; border-bottom: 1px solid #dcd1c4; margin-top: 25px; padding-bottom: 4px; text-transform: uppercase; }
-    .terms { background: #faf9f6; padding: 12px; border: 1px solid #dcd1c4; height: 100px; overflow-y: scroll; font-size: 12px; line-height: 1.6; margin-top: 8px; color: #444; }
     .checkbox-container { margin-top: 15px; font-size: 13px; display: flex; align-items: center; }
     .checkbox-container input { width: auto; margin-top: 0; margin-right: 8px; }
-    button { width: 100%; padding: 12px; background-color: #4a3728; color: #ffffff; border: 1px solid #332419; border-radius: 2px; font-family: "Georgia", serif; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; cursor: pointer; transition: background-color 0.2s; }
-    button:hover { background-color: #6b503b; }
+    
+    /* Green Submit Button */
+    .submit-btn { width: 100%; padding: 14px; background-color: #27ae60; color: #ffffff; border: 1px solid #1e8449; border-radius: 2px; font-family: "Georgia", serif; font-size: 16px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-top: 20px; cursor: pointer; transition: background-color 0.2s; }
+    .submit-btn:hover { background-color: #219653; }
+    
     .back-link { display: block; margin-top: 20px; text-align: center; font-size: 13px; color: #8c6d3b; text-decoration: none; }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <div class="header">
-      <h2>Carrom Tournament</h2>
-      <div class="subtitle">Official Registration Form</div>
+    
+    <!-- Top Header Bar with Register Button -->
+    <div class="header-bar">
+      <div class="header-text">
+        <h2>THANDALAM PREMIER CARROM LEAGUE - 2026</h2>
+        <div class="subtitle">Official Tournament Portal</div>
+      </div>
+      <a href="#registration-form" class="top-register-btn">Register Team 📝</a>
     </div>
+
+    <!-- Tournament Details Section -->
+    <div class="info-card">
+      <div class="section-title" style="margin-top:0;">Tournament Overview</div>
+      <div class="info-grid">
+        <div class="info-item">
+          <strong>Venue</strong>
+          Downtown Boys Grounds / Community Center, Thandalam
+        </div>
+        <div class="info-item">
+          <strong>Date & Time</strong>
+          To Be Announced (Check WhatsApp Group)
+        </div>
+        <div class="info-item">
+          <strong>Format</strong>
+          Doubles (Captain + Player 2)
+        </div>
+        <div class="info-item">
+          <strong>Categories</strong>
+          Above 18 & Below 18
+        </div>
+      </div>
+    </div>
+
+    <!-- Rules & Regulations Section -->
+    <div class="section-title">Rules & Regulations</div>
+    <div class="rules-container">
+      <ul>
+        <li><strong>Eligibility:</strong> Participation is strictly restricted to residents of Thandalam.</li>
+        <li><strong>Organizer Authority:</strong> The organizer's decisions regarding all matches and rules are final and binding. Any unnecessary arguments or misconduct will lead to immediate disqualification.</li>
+        <li><strong>Punctuality & Presence:</strong> Teams must be present at the board when their call time is announced. If a team fails to report on time, the opponent will receive a walkover win, or the match slot may be reallocated to another match in the same round.</li>
+        <li><strong>Gameplay & Striker Rules:</strong>
+          <ul>
+            <li><strong>Direct Hits:</strong> Players are allowed to hit the opponent's coins directly; doing so is valid and is not a foul.</li>
+            <li><strong>Foul Coin Placement:</strong> When a foul occurs, the penalty coin must be placed by the opposing team anywhere within the main center circle.</li>
+            <li><strong>Red Coin Placement:</strong> The Red coin (Queen) will always be placed on the board immediately by the organizers without waiting for the center circle to clear. If the center circle is free, it will be placed in the center; if occupied, it will be placed directly opposite the player who strikes next.</li>
+          </ul>
+        </li>
+        <li><strong>Foul Violations:</strong>
+          <ul>
+            <li>Pocketing the striker is considered a foul.</li>
+            <li>Pocketing the striker on the very first break/attempt is a strict foul with no exceptions.</li>
+            <li>The striker flying off/out of the carrom board is considered a foul.</li>
+          </ul>
+        </li>
+        <li><strong>Prohibited Shot Styles:</strong> Thumbing is strictly prohibited. Arrow hitting (direct arrow strikes) is prohibited. Any violation will result in immediate disqualification at the organizer's discretion.</li>
+        <li><strong>End-Game Win Condition (Final 3 Coins):</strong> When only three coins remain on the board (Red, 1 White, 1 Black), the team that pockets the Red coin must cover it. If both remaining coins fall on the same strike, whichever follower coin enters the pocket first determines the winner. The team owning that first-pocketed coin wins the match immediately.</li>
+        <li><strong>Cooperation & Conduct:</strong> Players are required to handle equipment with care, maintain sportsmanship, and fully cooperate with the organizers to ensure a smooth tournament.</li>
+      </ul>
+    </div>
+
+    <!-- Registration Form Section -->
+    <div id="registration-form" class="section-title">Team Registration</div>
 
     <form id="regForm" onsubmit="sendToWhatsApp(event)">
       <label>Category *</label>
       <select id="category" required>
-        <option value="">Select Category</option>
+        <option value="" disabled selected>Select Category</option>
         <option value="Above 18">Above 18</option>
         <option value="Below 18">Below 18</option>
       </select>
 
       <label>Team Name *</label>
-      <input type="text" id="team" required>
+      <input type="text" id="team" placeholder="Minimum 3 characters" required>
 
       <div class="section-title">Captain Details</div>
 
-      <label>Captain Name *</label>
-      <input type="text" id="captain" required>
+      <label>Captain's Name *</label>
+      <input type="text" id="captain" placeholder="Minimum 3 characters" required>
 
       <label>Captain's Aadhaar Number *</label>
-      <input type="text" id="captainAadhaar" maxlength="12" pattern="\d{12}" title="Please enter a 12-digit Aadhaar number" placeholder="12-digit Aadhaar Number" required>
+      <input type="text" id="captainAadhaar" maxlength="12" pattern="\d{12}" placeholder="12-digit Aadhaar Number" required>
 
-      <label>Captain Date of Birth *</label>
+      <label>Captain's Date of Birth *</label>
       <input type="date" id="captainDob" required>
 
-      <label>Captain Mobile Number *</label>
+      <label>Captain's Mobile Number *</label>
       <div class="phone-container">
         <span class="phone-prefix">+91</span>
-        <input type="tel" id="captainMobile" maxlength="10" pattern="\d{10}" title="Please enter a 10-digit mobile number" placeholder="10-digit Mobile Number" required>
+        <input type="tel" id="captainMobile" maxlength="10" pattern="\d{10}" placeholder="10-digit Mobile Number" required>
       </div>
 
       <div class="section-title">Player 2 Details</div>
 
-      <label>Player 2 Full Name *</label>
-      <input type="text" id="player2" required>
+      <label>Player 2 Name *</label>
+      <input type="text" id="player2" placeholder="Minimum 3 characters" required>
 
       <label>Player 2 Aadhaar Number *</label>
-      <input type="text" id="player2Aadhaar" maxlength="12" pattern="\d{12}" title="Please enter a 12-digit Aadhaar number" placeholder="12-digit Aadhaar Number" required>
+      <input type="text" id="player2Aadhaar" maxlength="12" pattern="\d{12}" placeholder="12-digit Aadhaar Number" required>
 
       <label>Player 2 Date of Birth *</label>
       <input type="date" id="player2Dob" required>
@@ -78,23 +156,15 @@
       <label>Player 2 Mobile Number *</label>
       <div class="phone-container">
         <span class="phone-prefix">+91</span>
-        <input type="tel" id="player2Mobile" maxlength="10" pattern="\d{10}" title="Please enter a 10-digit mobile number" placeholder="10-digit Mobile Number" required>
+        <input type="tel" id="player2Mobile" maxlength="10" pattern="\d{10}" placeholder="10-digit Mobile Number" required>
       </div>
 
-      <div class="section-title">Rules & Regulations</div>
-      <div class="terms">
-        • Participation restricted to Thandalam residents.<br>
-        • Organizer decisions are final.<br>
-        • Direct hits allowed; Thumbing & direct arrow hitting prohibited.<br>
-        • Striker pocket/out of board is a foul.
-      </div>
-      
       <div class="checkbox-container">
         <input type="checkbox" id="termsAgree" required>
         <label for="termsAgree" style="margin-top:0; font-weight:normal; text-transform:none;">I agree to tournament rules.</label>
       </div>
 
-      <button type="submit">Submit Registration via WhatsApp</button>
+      <button type="submit" class="submit-btn">Submit Registration via WhatsApp</button>
     </form>
 
     <a href="../" class="back-link">← Back to Tournaments</a>
@@ -111,29 +181,66 @@
     function sendToWhatsApp(e) {
       e.preventDefault();
 
+      const team = document.getElementById('team').value.trim();
+      const captain = document.getElementById('captain').value.trim();
+      const player2 = document.getElementById('player2').value.trim();
+      
+      const captainAadhaar = document.getElementById('captainAadhaar').value.trim();
+      const player2Aadhaar = document.getElementById('player2Aadhaar').value.trim();
+
+      const captainMobile = document.getElementById('captainMobile').value.trim();
+      const player2Mobile = document.getElementById('player2Mobile').value.trim();
+
+      if (team.length < 3) {
+        alert("Team Name must be at least 3 characters long.");
+        return;
+      }
+      if (captain.length < 3) {
+        alert("Captain's Name must be at least 3 characters long.");
+        return;
+      }
+      if (player2.length < 3) {
+        alert("Player 2 Name must be at least 3 characters long.");
+        return;
+      }
+
+      if (captainAadhaar.length !== 12 || isNaN(captainAadhaar)) {
+        alert("Captain's Aadhaar Number must be exactly 12 digits.");
+        return;
+      }
+      if (player2Aadhaar.length !== 12 || isNaN(player2Aadhaar)) {
+        alert("Player 2 Aadhaar Number must be exactly 12 digits.");
+        return;
+      }
+
+      if (captainMobile.length !== 10 || isNaN(captainMobile)) {
+        alert("Captain's Mobile Number must be exactly 10 digits.");
+        return;
+      }
+      if (player2Mobile.length !== 10 || isNaN(player2Mobile)) {
+        alert("Player 2 Mobile Number must be exactly 10 digits.");
+        return;
+      }
+
       if (captainDobInput.value > today || player2DobInput.value > today) {
         alert("Date of Birth cannot be in the future.");
         return;
       }
 
-      // Extracts only the 10-digit numbers typed by the user
-      const captainPhone = document.getElementById('captainMobile').value.trim();
-      const player2Phone = document.getElementById('player2Mobile').value.trim();
-      
       const organizerPhone = "918939645446";
 
-      const msg = "Carrom Board Tournament Registration\n\n" +
-        "Category : " + document.getElementById('category').value + "\n" +
-        "Team Name : " + document.getElementById('team').value + "\n" +
-        "Captain's Name : " + document.getElementById('captain').value + "\n" +
-        "Captain Aadhaar Number : " + document.getElementById('captainAadhaar').value + "\n" +
-        "Captain's Date of Birth : " + document.getElementById('captainDob').value + "\n" +
-        "Captain Mobile Number : " + captainPhone + "\n" +
-        "Player 2 Full Name : " + document.getElementById('player2').value + "\n" +
-        "Player 2 Aadhaar Number : " + document.getElementById('player2Aadhaar').value + "\n" +
-        "Player 2 Date of Birth : " + document.getElementById('player2Dob').value + "\n" +
-        "Player 2 Mobile Number : " + player2Phone + "\n" +
-        "Agree to terms and conditions : I confirm that the information provided is accurate and agree to the tournament rules.";
+      const msg = "*THANDALAM PREMIER CARROM LEAGUE - 2026*\n\n" +
+        "*Category :* " + document.getElementById('category').value + "\n" +
+        "*Team Name :* " + team + "\n" +
+        "*Captain's Name :* " + captain + "\n" +
+        "*Captain's Aadhaar Number :* " + captainAadhaar + "\n" +
+        "*Captain's Date of Birth :* " + captainDobInput.value + "\n" +
+        "*Captain's Mobile Number :* " + captainMobile + "\n" +
+        "*Player 2 Name :* " + player2 + "\n" +
+        "*Player 2 Aadhaar Number :* " + player2Aadhaar + "\n" +
+        "*Player 2 Date of Birth :* " + player2DobInput.value + "\n" +
+        "*Player 2 Mobile Number :* " + player2Mobile + "\n" +
+        "*Agree to terms and conditions :* I confirm that the information provided is accurate and agree to the tournament rules.";
 
       const encodedMsg = encodeURIComponent(msg);
       window.location.href = "https://wa.me/" + organizerPhone + "?text=" + encodedMsg;
