@@ -140,7 +140,8 @@
       <label>Captain's Mobile Number *</label>
       <div class="phone-container">
         <span class="phone-prefix">+91</span>
-        <input type="tel" id="captainMobile" maxlength="10" pattern="\\d{10}" required>
+        <!-- Captain's Mobile Input -->
+        <input type="text" id="captainMobile" name="captainMobile" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
       </div>
 
       <div class="section-title">Player 2 Details</div>
@@ -154,7 +155,8 @@
       <label>Player 2 Mobile Number *</label>
       <div class="phone-container">
         <span class="phone-prefix">+91</span>
-        <input type="tel" id="player2Mobile" maxlength="10" pattern="\\d{10}" required>
+        <!-- Player 2 Mobile Input -->
+        <input type="text" id="player2Mobile" name="player2Mobile" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" maxlength="10" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
       </div>
 
       <div class="checkbox-container">
