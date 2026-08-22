@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+# Modify the provided HTML code to remove the Aadhaar field for both Captain and Player 2.
+
+html_input = """<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -62,7 +64,7 @@
       <!-- <a href="#registration-form" class="top-register-btn">Register Team 📝</a> -->
 
       <!-- Top Register Button (Disabled) -->
-      <!-- <a href="javascript:void(0)" class="top-register-btn disabled">Registration Closed — Stay Tuned ⏳</a>  -->
+      <!-- <a href="javascript:void(0)" class="top-register-btn disabled">Registration Closed — Stay Tuned ⏳</a> -->
       <a href="javascript:void(0)" class="top-register-btn disabled">Registration Closed — Stay Tuned ⏳</a>
       
     </div>
@@ -134,16 +136,13 @@
       <label>Captain's Name *</label>
       <input type="text" id="captain" required>
 
-      <label>Captain's Aadhaar Number *</label>
-      <input type="text" id="captainAadhaar" maxlength="12" pattern="\d{12}" required>
-
       <label>Captain's Date of Birth *</label>
       <input type="date" id="captainDob" required>
 
       <label>Captain's Mobile Number *</label>
       <div class="phone-container">
         <span class="phone-prefix">+91</span>
-        <input type="tel" id="captainMobile" maxlength="10" pattern="\d{10}" required>
+        <input type="tel" id="captainMobile" maxlength="10" pattern="\\d{10}" required>
       </div>
 
       <div class="section-title">Player 2 Details</div>
@@ -151,16 +150,13 @@
       <label>Player 2 Name *</label>
       <input type="text" id="player2" required>
 
-      <label>Player 2 Aadhaar Number *</label>
-      <input type="text" id="player2Aadhaar" maxlength="12" pattern="\d{12}" required>
-
       <label>Player 2 Date of Birth *</label>
       <input type="date" id="player2Dob" required>
 
       <label>Player 2 Mobile Number *</label>
       <div class="phone-container">
         <span class="phone-prefix">+91</span>
-        <input type="tel" id="player2Mobile" maxlength="10" pattern="\d{10}" required>
+        <input type="tel" id="player2Mobile" maxlength="10" pattern="\\d{10}" required>
       </div>
 
       <div class="checkbox-container">
@@ -211,89 +207,82 @@
     });
 
     function sendToWhatsApp(e) {
-  e.preventDefault();
+      e.preventDefault();
 
-  const topRegisterBtn = document.querySelector('.top-register-btn');
-  if (topRegisterBtn && topRegisterBtn.classList.contains('disabled')) {
-    alert("Registration is currently closed.");
-    return;
-  }
+      const topRegisterBtn = document.querySelector('.top-register-btn');
+      if (topRegisterBtn && topRegisterBtn.classList.contains('disabled')) {
+        alert("Registration is currently closed.");
+        return;
+      }
 
-  const team = document.getElementById('team').value.trim();
-  const captain = document.getElementById('captain').value.trim();
-  const player2 = document.getElementById('player2').value.trim();
-  
-  const captainAadhaar = document.getElementById('captainAadhaar').value.trim();
-  const player2Aadhaar = document.getElementById('player2Aadhaar').value.trim();
+      const team = document.getElementById('team').value.trim();
+      const captain = document.getElementById('captain').value.trim();
+      const player2 = document.getElementById('player2').value.trim();
 
-  const captainMobile = document.getElementById('captainMobile').value.trim();
-  const player2Mobile = document.getElementById('player2Mobile').value.trim();
+      const captainMobile = document.getElementById('captainMobile').value.trim();
+      const player2Mobile = document.getElementById('player2Mobile').value.trim();
 
-  if (team.length < 3) {
-    alert("Team Name must be at least 3 characters long.");
-    return;
-  }
-  if (captain.length < 3) {
-    alert("Captain's Name must be at least 3 characters long.");
-    return;
-  }
-  if (player2.length < 3) {
-    alert("Player 2 Name must be at least 3 characters long.");
-    return;
-  }
+      if (team.length < 3) {
+        alert("Team Name must be at least 3 characters long.");
+        return;
+      }
+      if (captain.length < 3) {
+        alert("Captain's Name must be at least 3 characters long.");
+        return;
+      }
+      if (player2.length < 3) {
+        alert("Player 2 Name must be at least 3 characters long.");
+        return;
+      }
 
-  if (captainAadhaar.length !== 12 || isNaN(captainAadhaar)) {
-    alert("Captain's Aadhaar Number must be exactly 12 digits.");
-    return;
-  }
-  if (player2Aadhaar.length !== 12 || isNaN(player2Aadhaar)) {
-    alert("Player 2 Aadhaar Number must be exactly 12 digits.");
-    return;
-  }
+      if (captainMobile.length !== 10 || isNaN(captainMobile)) {
+        alert("Captain's Mobile Number must be exactly 10 digits.");
+        return;
+      }
+      if (player2Mobile.length !== 10 || isNaN(player2Mobile)) {
+        alert("Player 2 Mobile Number must be exactly 10 digits.");
+        return;
+      }
 
-  if (captainMobile.length !== 10 || isNaN(captainMobile)) {
-    alert("Captain's Mobile Number must be exactly 10 digits.");
-    return;
-  }
-  if (player2Mobile.length !== 10 || isNaN(player2Mobile)) {
-    alert("Player 2 Mobile Number must be exactly 10 digits.");
-    return;
-  }
+      if (captainDobInput.value > today || player2DobInput.value > today) {
+        alert("Date of Birth cannot be in the future.");
+        return;
+      }
 
-  if (captainDobInput.value > today || player2DobInput.value > today) {
-    alert("Date of Birth cannot be in the future.");
-    return;
-  }
+      // Convert YYYY-MM-DD to DD/MM/YYYY
+      const formatDate = (dateStr) => {
+        if (!dateStr) return '';
+        const parts = dateStr.split('-');
+        return `${parts[2]}/${parts[1]}/${parts[0]}`;
+      };
 
-  // Convert YYYY-MM-DD to DD/MM/YYYY
-  const formatDate = (dateStr) => {
-    if (!dateStr) return '';
-    const parts = dateStr.split('-');
-    return `${parts[2]}/${parts[1]}/${parts[0]}`;
-  };
+      const captainFormattedDob = formatDate(captainDobInput.value);
+      const player2FormattedDob = formatDate(player2DobInput.value);
 
-  const captainFormattedDob = formatDate(captainDobInput.value);
-  const player2FormattedDob = formatDate(player2DobInput.value);
+      const organizerPhone = "918939645446";
 
-  const organizerPhone = "918939645446";
+      const msg = "*THANDALAM PREMIER CARROM LEAGUE - 2026*\\n\\n" +
+        "*Category :* " + document.getElementById('category').value + "\\n" +
+        "*Team Name :* " + team + "\\n" +
+        "*Captain's Name :* " + captain + "\\n" +
+        "*Captain's Date of Birth :* " + captainFormattedDob + "\\n" +
+        "*Captain's Mobile Number :* " + captainMobile + "\\n" +
+        "*Player 2 Name :* " + player2 + "\\n" +
+        "*Player 2 Date of Birth :* " + player2FormattedDob + "\\n" +
+        "*Player 2 Mobile Number :* " + player2Mobile + "\\n" +
+        "*Agree to terms and conditions :* I confirm that the information provided is accurate and agree to the tournament rules.";
 
-  const msg = "*THANDALAM PREMIER CARROM LEAGUE - 2026*\n\n" +
-    "*Category :* " + document.getElementById('category').value + "\n" +
-    "*Team Name :* " + team + "\n" +
-    "*Captain's Name :* " + captain + "\n" +
-    "*Captain's Aadhaar Number :* " + captainAadhaar + "\n" +
-    "*Captain's Date of Birth :* " + captainFormattedDob + "\n" +
-    "*Captain's Mobile Number :* " + captainMobile + "\n" +
-    "*Player 2 Name :* " + player2 + "\n" +
-    "*Player 2 Aadhaar Number :* " + player2Aadhaar + "\n" +
-    "*Player 2 Date of Birth :* " + player2FormattedDob + "\n" +
-    "*Player 2 Mobile Number :* " + player2Mobile + "\n" +
-    "*Agree to terms and conditions :* I confirm that the information provided is accurate and agree to the tournament rules.";
-
-  const encodedMsg = encodeURIComponent(msg);
-  window.location.href = "https://wa.me/" + organizerPhone + "?text=" + encodedMsg;
-}
+      const encodedMsg = encodeURIComponent(msg);
+      window.location.href = "https://wa.me/" + organizerPhone + "?text=" + encodedMsg;
+    }
   </script>
 
 </body>
 </html>
+"""
+
+# Save to file or output updated text
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_input)
+
+print("Updated HTML code successfully generated.")
