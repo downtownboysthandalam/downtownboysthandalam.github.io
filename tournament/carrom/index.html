@@ -53,19 +53,9 @@
       margin-bottom: 12px;
     }
 
-    .presenter-text {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      color: var(--gold-color);
-      background: #fffdf9;
-      border: 1px solid #ebd0a0;
-      padding: 4px 14px;
-      border-radius: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
+    .presenter-text { display: inline-block; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; color: var(--gold-color); background: #fffdf9; border: 1px solid #ebd0a0; padding: 4px 14px; border-radius: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); max-width: 100%; box-sizing: border-box; }
+
+    .no-break { display: inline-block; white-space: nowrap; }
 
     .header-bar {
       text-align: center;
@@ -89,26 +79,9 @@
       color: var(--text-muted);
     }
 
-    .status-banner {
-      margin-top: 15px;
-      display: inline-block;
-    }
-
-    .top-register-btn {
-      background-color: var(--accent-color);
-      color: #ffffff;
-      padding: 8px 16px;
-      border-radius: 4px;
-      font-family: "Georgia", serif;
-      font-size: 11px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      text-decoration: none;
-      display: inline-block;
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
+    .status-banner { margin-top: 15px; display: block; width: 100%; }
+    
+    .top-register-btn { background-color: var(--accent-color); color: #ffffff; padding: 8px 16px; border-radius: 4px; font-family: "Georgia", serif; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; display: inline-block; max-width: 100%; white-space: normal; word-wrap: break-word; box-sizing: border-box; text-align: center; transition: all 0.2s; }
 
     .top-register-btn.disabled {
       background-color: #8c857b;
@@ -409,7 +382,7 @@
 
     <!-- President Citation Header -->
     <div class="presenter-badge">
-      <span class="presenter-text">Thandalam President M. Anandhan Presents</span>
+      <span class="presenter-text">Thandalam President <span class="no-break">M. Anandhan</span> Presents</span>
     </div>
 
     <div class="header-bar">
